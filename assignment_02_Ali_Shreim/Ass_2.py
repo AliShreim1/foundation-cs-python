@@ -28,6 +28,7 @@ def nor(mat,col):
     std=math.sqrt(temp/mean)
     print(std,"\n",mean)
     return mean==0 and std==1
+
 def count_nor(mat,col=0):
     if col>len(mat):
         return 0
