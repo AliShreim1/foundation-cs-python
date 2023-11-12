@@ -22,6 +22,16 @@ def displyContent(list:list,dictionary:dict,index):
     content=requests.get(url)
     print(content.text)
 
+def printTheTitles(list:list):
+    for i in list:
+        if isinstance(i,list):
+            for j in i:
+                print(j+" ")
+        else:
+            print(i+"\n")
+
+
+
 
 
 
