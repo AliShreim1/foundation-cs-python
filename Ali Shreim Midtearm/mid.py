@@ -49,6 +49,11 @@ def createNestedTabs(dictionary:dict,index):
         d[title]=url
     dictionary[key]=d
 
+def clearOpenTabs(list:list):
+    list.clear()
+
+
+
             
 
 
