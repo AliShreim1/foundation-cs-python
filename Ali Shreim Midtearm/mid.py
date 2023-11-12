@@ -31,6 +31,25 @@ def printTheTitles(list:list):
             print(i+"\n")
 
 
+def createNestedTabs(dictionary:dict,index):
+    x=0
+    key=None
+    for  i in dictionary.keys():
+        if(x==index-1):
+            key=i
+            break
+        else:
+            x+=1
+    d={}
+    while(True):
+        title=input('enter a title,you can enter stop to stop \n')
+        if(title=='stop'):
+            break
+        url=input('enter the url \n')
+        d[title]=url
+    dictionary[key]=d
+
+            
 
 
 
