@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup# learned from youtube (https://youtu.be/0uiPOxUcLgg?feature=shared)
+import json
 
 def addTab(dictionary:dict):
     title=input('Enter the title of the new tab')
@@ -14,13 +15,14 @@ def closeTab(list:list,index):
 
 def displyContent(list:list,dictionary:dict,index):
     tab=None
-    if(index>len(list) or isinstance(index,int)):
+    if(index>len(list) or not isinstance(index,int)):
         tab=list[len(list)-1]
     else:
         tab=list[index-1]
     url=dictionary[tab]
     content=requests.get(url)
-    print(content.text)
+    soup=BeautifulSoup(content.text,'lxml')
+    return soup
 
 def printTheTitles(list:list):
     for i in list:
@@ -52,12 +54,15 @@ def createNestedTabs(dictionary:dict,index):
 def clearOpenTabs(list:list):
     list.clear()
 
-
-
-            
-
-
-
-
-
+def saveAsJsonFile(filepath,dictionary,openTabs):
+    file=filepath
+    content=[]
+    for i in range(len(openTabs)):
+        content.append(displyContent(openTabs,dictionary,i).prettify())
+    with open(file,'w') as jfile:
+        json.dump(dictionary,jfile)
+        json.dump(openTabs,jfile)
+        for i in content:
+            json.dump(i,jfile)
+    print('save is done')
 
